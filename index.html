@@ -3,29 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genesys Messenger Test Page</title>
-    <script type="text/javascript" charset="utf-8">
-  (function (g, e, n, es, ys) {
-    g['_genesysJs'] = e;
-    g[e] = g[e] || function () {
-      (g[e].q = g[e].q || []).push(arguments)
-    };
-    g[e].t = 1 * new Date();
-    g[e].c = es;
-    ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
-  })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
-    environment: 'prod-euc1',
-    deploymentId: 'ae9d162a-50e3-4218-961b-a18bcf486de0'
-  });
-</script>
-    <!-- PASTE YOUR GENESYS SNIPPET DIRECTLY BELOW THIS LINE -->
+    <title>Artelco | Customer Support Portal</title>
+    
+    <!-- Professional Styling -->
+    <style>
+        :root {
+            --primary-color: #0d233a;
+            --secondary-color: #203a56;
+            --accent-color: #ff4f1f;
+            --light-bg: #f5f7fa;
+            --text-dark: #333333;
+        }
 
-    <!-- PASTE YOUR GENESYS SNIPPET DIRECTLY ABOVE THIS LINE -->
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .company-logo {
+            height: 40px; /* Adjust height based on your actual logo */
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            margin-left: 20px;
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+
+        /* Main Features Section */
+        .main-content {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 250px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+    <!-- GENESYS SNIPPET START -->
+    <script type="text/javascript" charset="utf-8">
+      (function (g, e, n, es, ys) {
+        g['_genesysJs'] = e;
+        g[e] = g[e] || function () {
+          (g[e].q = g[e].q || []).push(arguments)
+        };
+        g[e].t = 1 * new Date();
+        g[e].c = es;
+        ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+      })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
+        environment: 'prod-euc1',
+        deploymentId: 'ae9d162a-50e3-4218-961b-a18bcf486de0'
+      });
+    </script>
+    <!-- GENESYS SNIPPET END -->
 </head>
 <body>
-    <div style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
-        <h1>Genesys Cloud Messenger Test</h1>
-        <p>If configured correctly, the chat widget should appear in the bottom-right corner of this page.</p>
-    </div>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="logo-container">
+            <!-- REPLACE THE SRC LINK BELOW WITH YOUR REAL LOGO URL LATER IF YOU HAVE ONE -->
+            <img class="company-logo" src="https://via.placeholder.com/150x40?text=ARTELCO" alt="Artelco Logo">
+            <span class="brand-name">Artelco</span>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Solutions</a>
+            <a href="#">Support</a>
+        </nav>
+    </header>
+
+    <!-- Hero Showcase Section -->
+    <section class="hero">
+        <h1>Welcome to Artelco Support</h1>
+        <p>We are dedicated to providing fast, reliable communication and system integration services. Need help? Start a live chat with us anytime.</p>
+    </section>
+
+    <!-- Interactive Features Section -->
+    <main class="main-content">
+        <h2>How can we help you today?</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Technical Support</h3>
+                <p>Get in touch with our engineering team for immediate platform assistance.</p>
+            </div>
+            <div class="card">
+                <h3>Live Web Chat</h3>
+                <p>Click the bubble in the bottom right corner to initiate a secure session with an agent.</p>
+            </div>
+            <div class="card">
+                <h3>Our Solutions</h3>
+                <p>Explore our tailored digital transformation and infrastructure frameworks.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Corporate Footer -->
+    <footer>
+        <p>&copy; 2026 Artelco. All Rights Reserved. Powered by Genesys Cloud CX.</p>
+    </footer>
+
 </body>
 </html>
