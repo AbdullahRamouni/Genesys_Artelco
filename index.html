@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARTELCO | Arab Telecommunication Trading & Maintenance Co.</title>
-    <!-- GENESYS SNIPPET START -->
+    
     <script type="text/javascript" charset="utf-8">
       (function (g, e, n, es, ys) {
         g['_genesysJs'] = e;
@@ -19,8 +19,8 @@
         deploymentId: 'ae9d162a-50e3-4218-961b-a18bcf486de0'
       });
     </script>
-    <!-- GENESYS SNIPPET END -->
-    <!-- Enterprise Styling -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <style>
         :root {
             --primary: #0A2540;
@@ -39,6 +39,7 @@
             color: var(--text-dark);
             background-color: #ffffff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Utility Top Bar */
@@ -50,20 +51,29 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s ease;
         }
-        .top-bar a { color: #ffffff; text-decoration: none; margin-left: 15px;}
 
-        /* Main Navigation */
+        /* Main Navigation with dynamic scrolling styles */
         header {
             background-color: #ffffff;
             border-bottom: 1px solid var(--border);
-            padding: 15px 8%;
+            padding: 20px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Scrolled state triggered by jQuery */
+        header.scrolled {
+            padding: 12px 8%;
+            box-shadow: 0 10px 30px -10px rgba(10, 37, 64, 0.1);
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.95);
         }
 
         .logo-box {
@@ -75,13 +85,10 @@
         .company-logo {
             height: 62px;
             width: auto;
+            transition: transform 0.3s ease;
         }
-
-        .brand-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -0.5px;
+        header.scrolled .company-logo {
+            height: 48px; /* Smoothly shrinks logo on scroll */
         }
 
         nav a {
@@ -90,6 +97,23 @@
             margin-left: 25px;
             font-weight: 600;
             font-size: 14px;
+            position: relative;
+            padding: 4px 0;
+        }
+        
+        /* Premium animated underline for links */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
         }
         nav a:hover { color: var(--accent); }
 
@@ -97,7 +121,8 @@
         .hero-banner {
             background: linear-gradient(135deg, #06182C 0%, #1E3A8A 100%);
             color: #ffffff;
-            padding: 90px 8%;
+            padding: 110px 8%;
+            position: relative;
         }
 
         .hero-container { max-width: 800px; }
@@ -106,7 +131,7 @@
 
         /* Solutions Infrastructure Grid */
         .solutions-section {
-            padding: 70px 8%;
+            padding: 90px 8%;
             background-color: var(--bg-light);
         }
 
@@ -122,15 +147,34 @@
             margin: 0 auto;
         }
 
+        /* Interactive Micro-interaction Cards */
         .card {
             background: #ffffff;
             padding: 35px 25px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.01);
             border: 1px solid var(--border);
+            opacity: 0;                  /* Handled by scroll reveal layout */
+            transform: translateY(30px); /* Handled by scroll reveal layout */
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.3s ease, 
+                        opacity 0.6s ease;
         }
 
-        .card h3 { font-size: 1.25rem; color: var(--primary); margin: 0 0 12px 0; }
+        .card.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px -10px rgba(10, 37, 64, 0.12);
+            border-color: rgba(0, 118, 223, 0.3);
+        }
+
+        .card h3 { font-size: 1.25rem; color: var(--primary); margin: 0 0 12px 0; transition: color 0.3s ease;}
+        .card:hover h3 { color: var(--accent); }
         .card p { color: var(--text-muted); font-size: 14px; margin: 0; }
 
         /* Corporate Footer Frame */
@@ -154,33 +198,14 @@
         .footer-col p { margin: 5px 0; color: #94A3B8; }
         .footer-bottom { text-align: center; border-top: 1px solid #1E293B; padding-top: 20px; }
     </style>
-
-    <!-- GENESYS SNIPPET START -->
-    <script type="text/javascript" charset="utf-8">
-      (function (g, e, n, es, ys) {
-        g['_genesysJs'] = e;
-        g[e] = g[e] || function () {
-          (g[e].q = g[e].q || []).push(arguments)
-        };
-        g[e].t = 1 * new Date();
-        g[e].c = es;
-        ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
-      })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesjs.min.js', {
-        environment: 'prod-euc1',
-        deploymentId: 'ae9d162a-50e3-4218-961b-a18bcf486de0'
-      });
-    </script>
-    <!-- GENESYS SNIPPET END -->
 </head>
 <body>
 
-    <!-- Utility Bar containing true Corporate Office info -->
     <div class="top-bar">
         <div>📍 Amman, Jordan (Rif'at Al Nabulsi St., Al-Abdali)</div>
         <div>📞 Tel: +962 6 464 7062 | ✉️ info@artelco.com.jo</div>
     </div>
 
-    <!-- Main Header -->
     <header>
         <div class="logo-box">
             <img class="company-logo" src="artelco.png" alt="ARTELCO Logo">
@@ -193,15 +218,13 @@
         </nav>
     </header>
 
-    <!-- Enterprise Hero Section -->
     <section class="hero-banner">
         <div class="hero-container">
-            <h1>40 Years of Value Engineering & Corporate Integration</h1>
+            <h1><span class="counter" data-target="40">0</span> Years of Value Engineering & Corporate Integration</h1>
             <p>Providing robust infrastructure frameworks, unified digital solutions, and scalable omnichannel interaction platforms for Jordan's top enterprises.</p>
         </div>
     </section>
 
-    <!-- Core Portfolio Channels -->
     <main class="solutions-section">
         <div class="section-header">
             <h2>Our Core Competencies</h2>
@@ -228,7 +251,6 @@
         </div>
     </main>
 
-    <!-- Corporate Footer with official data registries -->
     <footer>
         <div class="footer-container">
             <div class="footer-col">
@@ -247,5 +269,68 @@
         </div>
     </footer>
 
+    <script>
+        $(document).ready(function() {
+            
+            // 1. Dynamic Header Scroll Transformation
+            $(window).on('scroll', function() {
+                if ($(window).scrollTop() > 40) {
+                    $('header').addClass('scrolled');
+                } else {
+                    $('header').removeClass('scrolled');
+                }
+            });
+
+            // 2. High-Performance Scroll Reveal for Portfolio Cards
+            function revealCards() {
+                $('.card').each(function(i) {
+                    var bottomOfObject = $(this).offset().top + 100;
+                    var bottomOfWindow = $(window).scrollTop() + $(window).height();
+                    
+                    if (bottomOfWindow > bottomOfObject) {
+                        // Stagger the animation timing for premium cadence
+                        var card = $(this);
+                        setTimeout(function() {
+                            card.addClass('reveal');
+                        }, i * 120); 
+                    }
+                });
+            }
+            
+            // Run on load and scroll
+            revealCards();
+            $(window).on('scroll', revealCards);
+
+            // 3. Premium Metric Engine (Interpolated Count-Up Effect)
+            $('.counter').each(function () {
+                var $this = $(this);
+                var countTo = $this.attr('data-target');
+                
+                $({ countNum: $this.text() }).animate({
+                    countNum: countTo
+                }, {
+                    duration: 1500,
+                    easing: 'swing',
+                    step: function () {
+                        $this.text(Math.floor(this.countNum));
+                    },
+                    complete: function () {
+                        $this.text(this.countNum);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
